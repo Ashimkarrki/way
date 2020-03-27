@@ -1,0 +1,99 @@
+var p=[null,null,1,
+			-1,null,null,
+			null,2,1
+]
+var temp=[];
+function netway(x){
+let right=x+1;
+let mega_right=null;
+if(right==6||right==3 ||x+1>8 || p[right]!=null ){right=null;}else{
+	if(p[x+2]==null && (x==3 ||x==6 || x==0) ){mega_right=x+2;}
+}
+
+let left =x-1;
+let mega_left=null;
+if(left==2||left==5 ||left<0||p[left]!=null){left=null;}else{
+	if(p[x-2]==null && (x==2 ||x==5 || x==8) ){mega_left=x-2;}
+}
+let up=x-3;
+let mega_up=null;
+if(up<0 || p[up]!=null){
+	up=null;}else{
+	if(p[x-6]==null && (x==6 ||x==7 || x==8) ){mega_up=x-6;}
+}
+let down=x+3;
+let mega_down=null;
+if(down> 8 || p[down]!=null){down=null;}else{
+if(p[x+6]==null && (x==0 ||x==1 || x==2) ){mega_down=x+6;}
+}
+let left_cross=null;
+let up_left_cross=null;
+let down_left_cross=null;
+let mega_up_left_cross=null;
+let mega_down_left_cross=null;
+
+
+if(x==4||x==8){
+	if (x==8 && p[0]==null) {
+		mega_up_left_cross=0;
+	}if (p[x-4]==null) {
+		up_left_cross=x-4;
+	}
+
+}
+if (x==0||x==4) {
+	if (x==4 && p[8]==null) {
+		mega_down_left_cross=8;
+	}if (p[x+4]==null) {
+			down_left_cross=x+4;
+	}
+
+}
+let right_cross=null;
+let up_right_cross=null;
+let down_right_cross=null;
+let mega_up_right_cross=null;
+let mega_down_right_cross=null;
+
+
+if(x==2||x==4){
+	if (x==6 && p[2]==null) {
+		mega_up_right_cross=2;
+	}if (p[x-2]==null) {
+		up_right_cross=x-2;
+	}
+}
+if (x==2||x==4) {
+	if (x==2  && p[6]==null) {
+		mega_down_right_cross=6;
+	}if (p[x+2]==null) {
+		down_right_cross=x+2;
+
+	}
+}
+let a=[up,mega_up,right,mega_right,down,mega_down,left,mega_left,left_cross,up_left_cross,down_left_cross,mega_up_left_cross,mega_down_left_cross,right_cross,up_right_cross,down_right_cross,mega_up_right_cross,mega_down_right_cross];
+for(let sub of a){
+	if(sub!=null)
+	{temp.push(sub);}
+}
+for(let y=0;y<temp.length;y++){
+	for(let x=y+1;x<temp.length;x++){
+		if(temp[y]==temp[x]){temp.splice(x,1);}
+	}
+}
+return;
+}
+
+
+
+function setup(){
+netway(2);
+
+for(let x of temp){
+	console.log(x);
+}
+
+}
+function draw(){
+
+}
